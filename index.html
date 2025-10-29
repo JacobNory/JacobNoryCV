@@ -3,66 +3,85 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jacob Nory — Resume</title>
+  <title>Jacob Nory — Interactive Resume</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg1:#f5f2e8;
-      --bg2:#eaf6fb;
-      --text:#2a2d33;
-      --muted:#626873;
-      --accent:#5CA8D3;
-      --card:#ffffffcc;
+      --bg1:#f5f2e8; /* soft beige */
+      --bg2:#eaf6fb; /* very light blue */
+      --text:#2a2d33; /* charcoal */
+      --muted:#626873; /* secondary text */
+      --accent:#5CA8D3; /* calm blue */
+      --card:#ffffffcc; /* translucent card */
       --border:#e7eaee;
       --shadow:0 10px 30px rgba(28,38,60,.12);
       --radius:18px;
     }
-    html,body{height:100%;}
-    body{
-      margin:0; font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text);
-      background: radial-gradient(1200px 900px at 0% 0%, var(--bg1), transparent 70%),
-                  linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
-      background-attachment: fixed;
-    }
-    .container{max-width:1100px; margin:0 auto; padding:32px 20px 80px;}
-    header{text-align:center; padding:32px 0 16px;}
-    .name{font-size:clamp(28px,6vw,44px); font-weight:700;}
-    .contact{margin-top:8px; color:var(--muted);}
-    .contact a{color:var(--accent); text-decoration:none; border-bottom:1px dotted transparent; transition:.2s;}
-    .contact a:hover{border-color:var(--accent);}
-    .nav{position:sticky; top:0; backdrop-filter:saturate(180%) blur(8px); background:rgba(255,255,255,.5); z-index:50; border-bottom:1px solid var(--border);}
-    .nav-inner{max-width:1100px; margin:0 auto; display:flex; gap:16px; justify-content:center; padding:10px 12px;}
-    .nav a{color:var(--text); text-decoration:none; padding:10px 14px; border-radius:12px; font-weight:500;}
-    .nav a:hover,.nav a.active{background:#ffffff80; color:#0b2938; box-shadow:0 4px 12px rgba(0,0,0,.06);}
-    section{margin:48px 0;}
-    .section-title{font-size:22px; font-weight:700; margin:0 0 18px; display:flex; align-items:center; gap:10px;}
-    .section-title .dot{width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px rgba(92,168,211,.18);}
-    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px;}
-    .timeline{position:relative; margin-left:8px;}
-    .timeline:before{content:""; position:absolute; left:20px; top:0; bottom:0; width:3px; background:linear-gradient(to bottom,rgba(92,168,211,.6),rgba(92,168,211,.1)); border-radius:2px;}
-    .tl-item{position:relative; display:grid; grid-template-columns:40px 1fr; gap:16px; margin:0 0 18px;}
-    .tl-bullet:before{content:""; position:absolute; left:8px; top:8px; width:16px; height:16px; background:#fff; border:4px solid var(--accent); border-radius:50%; box-shadow:0 0 0 6px rgba(92,168,211,.12);}
-    .tl-content{background:#fff; border:1px solid var(--border); border-radius:16px; padding:16px 18px; box-shadow:var(--shadow);}
-    .role{display:flex; flex-wrap:wrap; gap:6px 12px;}
-    .role .title{font-weight:700;}
-    .role .company{color:var(--muted); font-weight:500;}
-    .dates{color:var(--muted); font-size:14px; margin-top:4px;}
-    .summary{margin:10px 0 6px;}
-    .details{margin:0; padding-left:18px; display:none;}
-    .details li{margin:8px 0;}
-    .toggle{margin-top:10px; background:var(--accent); color:#fff; border:none; padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:600; box-shadow:0 8px 18px rgba(92,168,211,.25);}
-    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:16px;}
-    .col-6{grid-column:span 12;} @media(min-width:800px){.col-6{grid-column:span 6;}}
-    .project{background:#fff; border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow:var(--shadow);}
-    .project a{color:var(--accent); font-weight:600; text-decoration:none;}
-    .kvs{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;}
-    .tag{background:#fff; border:1px solid var(--border); padding:8px 12px; border-radius:999px; font-size:14px;}
-    .reveal{opacity:0; transform:translateY(10px); transition:opacity .5s,transform .5s;}
-    .reveal.visible{opacity:1; transform:none;}
-    footer{text-align:center; color:var(--muted); padding:32px 0 60px;}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--text);
+      background:radial-gradient(1200px 900px at 0% 0%, var(--bg1), transparent 70%),linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 100%);background-attachment:fixed}
+    .container{max-width:1100px;margin:0 auto;padding:32px 20px 80px}
+
+    /* Header */
+    header{text-align:center;padding:28px 0 8px}
+    .name{font-size:clamp(28px,6vw,44px);font-weight:700;letter-spacing:.3px;margin:0}
+    .contact{margin:8px 0 0;color:var(--muted)}
+    .contact a{color:var(--accent);text-decoration:none;border-bottom:1px dotted transparent;transition:.2s}
+    .contact a:hover{border-bottom-color:var(--accent)}
+
+    /* Nav */
+    .nav{position:sticky;top:0;backdrop-filter:saturate(180%) blur(8px);background:rgba(255,255,255,.55);z-index:50;border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:8px;justify-content:center;padding:10px 12px}
+    .nav a{color:var(--text);text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:500}
+    .nav a:hover,.nav a.active{background:#ffffff80;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+
+    /* Sections */
+    section{margin:42px 0}
+    .section-title{font-size:22px;font-weight:700;margin:0 0 18px;display:flex;align-items:center;gap:10px}
+    .section-title .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(92,168,211,.18)}
+
+    /* Cards */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+
+    /* Timeline */
+    .timeline{position:relative;margin-left:8px}
+    .timeline:before{content:"";position:absolute;left:20px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,rgba(92,168,211,.6),rgba(92,168,211,.1));border-radius:2px}
+    .tl-item{position:relative;display:grid;grid-template-columns:40px 1fr;gap:16px;margin:0 0 18px}
+    .tl-bullet:before{content:"";position:absolute;left:8px;top:8px;width:16px;height:16px;background:#fff;border:4px solid var(--accent);border-radius:50%;box-shadow:0 0 0 6px rgba(92,168,211,.12)}
+    .tl-content{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow)}
+    .role{display:flex;flex-wrap:wrap;gap:6px 12px}
+    .role .title{font-weight:700}
+    .role .company{color:var(--muted);font-weight:500}
+    .dates{color:var(--muted);font-size:14px;margin-top:4px}
+    .summary{margin:10px 0 6px}
+
+    /* native details element for expand/collapse */
+    details{margin-top:8px;border-radius:12px}
+    details>summary{list-style:none;cursor:pointer;display:inline-flex;gap:10px;align-items:center;background:var(--accent);color:#fff;padding:10px 14px;border-radius:12px;font-weight:600;box-shadow:0 8px 18px rgba(92,168,211,.25)}
+    details>summary::-webkit-details-marker{display:none}
+    details[open]>summary{background:#3e93c6}
+    .detail-list{margin:10px 0 0;padding-left:18px}
+    .detail-list li{margin:8px 0}
+
+    /* Grid */
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .col-6{grid-column:span 12}
+    @media(min-width:800px){.col-6{grid-column:span 6}}
+
+    .project{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow);transition:transform .15s ease}
+    .project:hover{transform:translateY(-2px)}
+    .project a{color:var(--accent);font-weight:600;text-decoration:none}
+
+    .kvs{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+    .tag{background:#fff;border:1px solid var(--border);padding:8px 12px;border-radius:999px;font-size:14px;color:#1f2a33}
+
+    /* Simple reveal on load */
+    .reveal{opacity:0;animation:fadeIn .7s ease forwards}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+    footer{text-align:center;color:var(--muted);padding:32px 0 60px}
   </style>
 </head>
 <body>
@@ -75,64 +94,212 @@
       <a href="#certs">Certifications</a>
     </div>
   </div>
+
   <div class="container">
     <header class="reveal">
       <h1 class="name">Jacob Nory</h1>
-      <div class="contact">Miami, FL · <a href="mailto:JNory97@gmail.com">JNory97@gmail.com</a> · <a href="tel:+16788609296">678-860-9296</a> · <a href="https://www.linkedin.com/in/ynory/" target="_blank">LinkedIn</a></div>
+      <div class="contact">Miami, FL · <a href="mailto:JNory97@gmail.com">JNory97@gmail.com</a> · <a href="tel:+16788609296">678-860-9296</a> · <a href="https://www.linkedin.com/in/ynory/" target="_blank" rel="noopener">LinkedIn</a></div>
     </header>
 
+    <!-- EXPERIENCE -->
     <section id="experience" class="reveal">
       <h2 class="section-title"><span class="dot"></span> Professional Experience</h2>
       <div class="timeline">
-        <div class="tl-item"><div class="tl-bullet"></div><div class="tl-content"><div class="role"><span class="title">Project Engineer</span> · <span class="company">KD Construction</span></div><div class="dates">May 2024 – Present</div><p class="summary">Oversees project cost coding, procurement, document control, and schedule alignment.</p><button class="toggle">See more</button><ul class="details"><li>Managed project expense data entry, coding 100% of costs per phase; 50+ items weekly.</li><li>Procured materials valued at ~$10,000 weekly to minimize delays.</li><li>Reviewed/approved 60+ design documents for compliance and usability.</li><li>Collaborated with engineers, architects, and GCs to resolve 30+ project issues.</li><li>Produced monthly look-ahead schedules aligned with the critical path.</li><li>Improved data accuracy by 90%, reducing forecasting errors by 10%.</li></ul></div></div>
+        <!-- KD Construction -->
+        <div class="tl-item"><div class="tl-bullet"></div><div class="tl-content">
+          <div class="role"><span class="title">Project Engineer</span> · <span class="company">KD Construction</span></div>
+          <div class="dates">May 2024 – Present</div>
+          <p class="summary">Oversees project cost coding, procurement, document control, and schedule alignment.</p>
+          <details>
+            <summary>See more</summary>
+            <ul class="detail-list">
+              <li>Managed project expense data entry, coding 100% of costs per phase; 50+ items weekly.</li>
+              <li>Procured materials valued at ~$10,000 weekly to minimize field delays.</li>
+              <li>Reviewed/approved 60+ design documents for compliance and usability.</li>
+              <li>Collaborated with engineers, architects, and GCs to resolve 30+ project issues.</li>
+              <li>Produced monthly look-ahead schedules aligned with the critical path.</li>
+              <li>Improved data accuracy by 90%, reducing forecasting errors by 10%.</li>
+            </ul>
+          </details>
+        </div></div>
 
-        <div class="tl-item"><div class="tl-bullet"></div><div class="tl-content"><div class="role"><span class="title">Assistant Project Manager</span> · <span class="company">Lakeshore Engineering</span></div><div class="dates">May 2023 – May 2024</div><p class="summary">Managed multiple infrastructure projects from bidding through completion.</p><button class="toggle">See more</button><ul class="details"><li>Managed six active projects ensuring compliance with specs and drawings.</li><li>Oversaw submittal reviews with a 95% approval rate.</li><li>Prepared cost estimates and schedules.</li><li>Documented progress via Procore; coordinated with superintendents.</li><li>Procured materials, issued change orders, negotiated with vendors.</li></ul></div></div>
+        <!-- Lakeshore Engineering -->
+        <div class="tl-item"><div class="tl-bullet"></div><div class="tl-content">
+          <div class="role"><span class="title">Assistant Project Manager</span> · <span class="company">Lakeshore Engineering</span></div>
+          <div class="dates">May 2023 – May 2024</div>
+          <p class="summary">Managed multiple infrastructure projects from bidding through completion.</p>
+          <details>
+            <summary>See more</summary>
+            <ul class="detail-list">
+              <li>Managed six active projects ensuring compliance with specifications and drawings.</li>
+              <li>Oversaw submittal reviews with a 95% approval rate.</li>
+              <li>Prepared cost estimates and schedules; documented progress via Procore.</li>
+              <li>Coordinated with superintendents; issued change orders and procured materials.</li>
+              <li>Negotiated with vendors and subcontractors (~10% savings).</li>
+            </ul>
+          </details>
+        </div></div>
 
-        <div class="tl-item"><div class="tl-bullet"></div><div class="tl-content"><div class="role"><span class="title">Project Manager</span> · <span class="company">Big Time Roofing</span></div><div class="dates">June 2022 – May 2023</div><p class="summary">Delivered multiple roofing projects monthly coordinating subs, procurement, and safety.</p><button class="toggle">See more</button><ul class="details"><li>Managed ~2 new jobs/week; coordinated scope, subs, materials.</li><li>Balanced scope, time, and quality across ~$50K monthly.</li><li>Performed site visits; ensured safety and spec compliance.</li><li>Supported a 3-person sales team with contracts and invoicing.</li></ul></div></div>
+        <!-- Big Time Roofing -->
+        <div class="tl-item"><div class="tl-bullet"></div><div class="tl-content">
+          <div class="role"><span class="title">Project Manager</span> · <span class="company">Big Time Roofing</span></div>
+          <div class="dates">June 2022 – May 2023</div>
+          <p class="summary">Delivered multiple roofing projects monthly coordinating subs, procurement, and safety.</p>
+          <details>
+            <summary>See more</summary>
+            <ul class="detail-list">
+              <li>Managed ~2 new jobs/week; scoped work with clients; assigned subs; procured materials.</li>
+              <li>Balanced scope, time, and quality across projects (~$50K total monthly).</li>
+              <li>Performed site visits; ensured safety and spec compliance.</li>
+              <li>Supported a 3-person sales team with contracts, invoicing, and issue resolution.</li>
+            </ul>
+          </details>
+        </div></div>
 
-        <div class="tl-item"><div class="tl-bullet"></div><div class="tl-content"><div class="role"><span class="title">Construction Assistant / Field Support</span> · <span class="company">Y. Brilliant Touch LLC</span></div><div class="dates">May 2015 – June 2022</div><p class="summary">Contributed to commercial and residential remodeling and renovation projects.</p><button class="toggle">See more</button><ul class="details"><li>Assisted with demolition, site prep, and cleanup for various renovation projects.</li><li>Delivered materials/tools to crews; ensured readiness.</li><li>Supported carpentry, painting, and finishing tasks.</li></ul></div></div>
+        <!-- Y. Brilliant Touch -->
+        <div class="tl-item"><div class="tl-bullet"></div><div class="tl-content">
+          <div class="role"><span class="title">Construction Assistant / Field Support</span> · <span class="company">Y. Brilliant Touch LLC</span></div>
+          <div class="dates">May 2015 – June 2022</div>
+          <p class="summary">Contributed to commercial and residential remodeling and renovation projects across multiple trades.</p>
+          <details>
+            <summary>See more</summary>
+            <ul class="detail-list">
+              <li>Assisted with demolition, site prep, and cleanup for various renovation projects.</li>
+              <li>Delivered materials/tools to crews; ensured readiness each phase.</li>
+              <li>Supported carpentry, painting, and finish installation for quality outcomes.</li>
+            </ul>
+          </details>
+        </div></div>
 
-        <div class="tl-item"><div class="tl-bullet"></div><div class="tl-content"><div class="role"><span class="title">Founder & Owner</span> · <span class="company">EZ-CleanGO</span></div><div class="dates">March 2025 – Present</div><p class="summary">EZ-CleanGO is a modern residential and commercial cleaning service focused on convenience, trust, and quality.</p></div></div>
+        <!-- EZ-CleanGO -->
+        <div class="tl-item"><div class="tl-bullet"></div><div class="tl-content">
+          <div class="role"><span class="title">Founder & Owner</span> · <span class="company">EZ-CleanGO</span></div>
+          <div class="dates">March 2025 – Present</div>
+          <p class="summary">EZ-CleanGO is a modern residential and commercial cleaning service focused on convenience, trust, and quality.</p>
+        </div></div>
       </div>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects" class="reveal">
       <h2 class="section-title"><span class="dot"></span> Projects</h2>
       <div class="card" style="margin-bottom:16px"><strong>Professional Projects</strong></div>
       <div class="grid">
-        <div class="col-6"><div class="project"><h3>Lofty Brickell <span style="color:var(--muted); font-weight:500">(May 2024 – Present)</span></h3><p>Two-tower residential development in Miami’s Brickell (43 & 46 stories; ~1.16M sq ft; est. $1.5B). Supported cost control, scheduling, and document coordination.</p></div></div>
-        <div class="col-6"><div class="project"><h3>Jefferson WTP <span style="color:var(--muted); font-weight:500">(May 2023 – May 2024)</span></h3><p>$60M ground-up water treatment plant over ~4 acres. Oversaw documentation, submittals, and progress tracking for major civil/MEP systems.</p></div></div>
-        <div class="col-6"><div class="project"><h3>Hooper & Hicks Renovations <span style="color:var(--muted); font-weight:500">(May 2023 – May 2024)</span></h3><p>UV Building Upgrade ($15M), Chemical Storage ($8M), Hicks Blower Upgrade ($10M). Developed & maintained schedules across parallel projects.</p></div></div>
+        <div class="col-6"><div class="project">
+          <h3>Lofty Brickell <span style="color:var(--muted);font-weight:500">(May 2024 – Present)</span></h3>
+          <p>Two-tower residential development in Miami’s Brickell (43 & 46 stories; ~1.16M sq ft; est. $1.5B). Supported cost control, scheduling, and document coordination.</p>
+        </div></div>
+        <div class="col-6"><div class="project">
+          <h3>Jefferson WTP <span style="color:var(--muted);font-weight:500">(May 2023 – May 2024)</span></h3>
+          <p>$60M ground-up water treatment plant over ~4 acres. Oversaw documentation, submittals, and progress tracking for major civil/MEP systems.</p>
+        </div></div>
+        <div class="col-6"><div class="project">
+          <h3>Hooper & Hicks Renovations <span style="color:var(--muted);font-weight:500">(May 2023 – May 2024)</span></h3>
+          <p>UV Building Upgrade ($15M), Chemical Storage ($8M), Hicks Blower Upgrade ($10M). Developed & maintained schedules across parallel projects.</p>
+        </div></div>
       </div>
 
       <div class="card" style="margin:22px 0 16px"><strong>Personal Projects</strong></div>
       <div class="grid">
-        <div class="col-6"><div class="project"><h3>Startup: Multi-Step Form Web App</h3><p>Responsive multi-step flow using HTML, CSS, JS with validation and state management.</p><a href="https://github.com/JacobNory/Multistep-form" target="_blank">GitHub Repository →</a></div></div>
-        <div class="col-6"><div class="project"><h3>Statistical Arbitrage Trading Bot</h3><p>Automated Python pairs-trading bot with live data, stats engine, and order execution; deployed on AWS EC2; Slack notifications.</p><a href="https://github.com/JacobNory/Statistical-Arbitrage---Trading-Bot.git" target="_blank">GitHub Repository →</a></div></div>
-        <div class="col-6"><div class="project"><h3>MMM Strategy — Quant Model</h3><p>Statistical (mean/median/mode) & volatility-based forecasting; automated pipelines & performance analytics.</p><a href="https://github.com/JacobNory/MMM-Trading-Strategy.git" target="_blank">GitHub Repository →</a></div></div>
+        <div class="col-6"><div class="project">
+          <h3>Startup: Multi‑Step Form Web App</h3>
+          <p>Responsive multi-step flow using HTML, CSS, JS with validation and state management.</p>
+          <a href="https://github.com/JacobNory/Multistep-form" target="_blank" rel="noopener">GitHub Repository →</a>
+        </div></div>
+        <div class="col-6"><div class="project">
+          <h3>Statistical Arbitrage Trading Bot</h3>
+          <p>Automated Python pairs-trading bot with live data, stats engine, and order execution; deployed on AWS EC2; Slack notifications.</p>
+          <a href="https://github.com/JacobNory/Statistical-Arbitrage---Trading-Bot.git" target="_blank" rel="noopener">GitHub Repository →</a>
+        </div></div>
+        <div class="col-6"><div class="project">
+          <h3>MMM Strategy — Quant Model</h3>
+          <p>Statistical (mean/median/mode) & volatility-based forecasting; automated pipelines & performance analytics.</p>
+          <a href="https://github.com/JacobNory/MMM-Trading-Strategy.git" target="_blank" rel="noopener">GitHub Repository →</a>
+        </div></div>
       </div>
     </section>
 
+    <!-- EDUCATION -->
     <section id="education" class="reveal">
       <h2 class="section-title"><span class="dot"></span> Education</h2>
       <div class="grid">
-        <div class="col-6"><div class="project"><h3>Columbia University — Online</h3><p><strong>Construction Management Specialization</strong> (Nov 2022 – Mar 2023)</p><p>Courses: Project Management · Scheduling · Cost Estimating & Control · Finance · The Construction Industry: The Way Forward</p></div></div>
-        <div class="col-6"><div class="project"><h3>Georgia State University — Atlanta, GA</h3><p><strong>Bachelor of Science</strong> (May 2019 – Jul 2022)</p><p>Courses: Statistical Evaluation · Program Management | Awards: Dean’s List (Spring, Summer, Fall 2020)</p></div></div>
+        <div class="col-6"><div class="project">
+          <h3>Columbia University — Online</h3>
+          <p><strong>Construction Management Specialization</strong> (Nov 2022 – Mar 2023)</p>
+          <p>Courses: Project Management · Scheduling · Cost Estimating & Control · Finance · The Construction Industry: The Way Forward</p>
+        </div></div>
+        <div class="col-6"><div class="project">
+          <h3>Georgia State University — Atlanta, GA</h3>
+          <p><strong>Bachelor of Science</strong> (May 2019 – Jul 2022)</p>
+          <p>Courses: Statistical Evaluation · Program Management | Awards: Dean’s List (Spring, Summer, Fall 2020)</p>
+        </div></div>
       </div>
     </section>
 
+    <!-- SKILLS -->
     <section id="skills" class="reveal">
       <h2 class="section-title"><span class="dot"></span> Skills</h2>
-      <div class="card"><div class="kvs"><span class="tag">Project Management</span><span class="tag">Cost Estimating</span><span class="tag">Scheduling (Primavera P6, MS Project)</span><span class="tag">Blueprint Reading</span><span class="tag">RFIs & Submittals</span><span class="tag">Document Control</span><span class="tag">Quality Control</span><span class="tag">Change Orders</span><span class="tag">Budgeting</span><span class="tag">Procurement</span><span class="tag">Procore</span><span class="tag">Bluebeam</span><span class="tag">Microsoft Project</span><span class="tag">Excel</span><span class="tag">On-Screen Takeoff</span><span class="tag">Python</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">AWS EC2</span><span class="tag">Git / GitHub</span><span class="tag">Slack API</span><span class="tag">Data Analysis</span><span class="tag">Leadership</span><span class="tag">Risk Management</span><span class="tag">Communication</span></div></div>
+      <div class="card">
+        <div class="kvs">
+          <span class="tag">Project Management</span>
+          <span class="tag">Cost Estimating</span>
+          <span class="tag">Scheduling (Primavera P6, MS Project)</span>
+          <span class="tag">Blueprint Reading</span>
+          <span class="tag">RFIs & Submittals</span>
+          <span class="tag">Document Control</span>
+          <span class="tag">Quality Control</span>
+          <span class="tag">Change Orders</span>
+          <span class="tag">Budgeting</span>
+          <span class="tag">Procurement</span>
+          <span class="tag">Procore</span>
+          <span class="tag">Bluebeam</span>
+          <span class="tag">Microsoft Project</span>
+          <span class="tag">Excel</span>
+          <span class="tag">On‑Screen Takeoff</span>
+          <span class="tag">Python</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">AWS EC2</span>
+          <span class="tag">Git / GitHub</span>
+          <span class="tag">Slack API</span>
+          <span class="tag">Data Analysis</span>
+          <span class="tag">Leadership</span>
+          <span class="tag">Risk Management</span>
+          <span class="tag">Communication</span>
+        </div>
+      </div>
     </section>
 
+    <!-- CERTS -->
     <section id="certs" class="reveal">
       <h2 class="section-title"><span class="dot"></span> Certifications</h2>
-      <div class="card"><ul><li><strong>Construction Management Specialization</strong> — Columbia University (2023)</li><li><strong>Procore Certified: Project Manager (Core Tools)</strong> — Procore (2023)</li><li><strong>Project Management Certification</strong> — Microsoft & LinkedIn (2023)</li><li><strong>Data Analyst Certification</strong> — Microsoft & LinkedIn (2023)</li></ul></div>
+      <div class="card">
+        <ul>
+          <li><strong>Construction Management Specialization</strong> — Columbia University (2023)</li>
+          <li><strong>Procore Certified: Project Manager (Core Tools)</strong> — Procore (2023)</li>
+          <li><strong>Project Management Certification</strong> — Microsoft & LinkedIn (2023)</li>
+          <li><strong>Data Analyst Certification</strong> — Microsoft & LinkedIn (2023)</li>
+        </ul>
+      </div>
     </section>
 
     <footer>© <span id="year"></span> Jacob Nory · Built for GitHub Pages</footer>
   </div>
 
   <script>
-    document.querySelectorAll('.toggle').forEach(btn=>{
+    // Lightweight active link highlighting without heavy observers
+    const links=[...document.querySelectorAll('.nav a')];
+    window.addEventListener('scroll',()=>{
+      const fromTop=window.scrollY+110; // offset below sticky nav
+      links.forEach(link=>{
+        const section=document.querySelector(link.getAttribute('href'));
+        if(section && section.offsetTop<=fromTop && section.offsetTop+section.offsetHeight>fromTop){
+          links.forEach(l=>l.classList.remove('active')); link.classList.add('active');
+        }
+      });
+    });
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
